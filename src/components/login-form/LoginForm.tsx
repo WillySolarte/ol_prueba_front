@@ -34,7 +34,7 @@ export default function LoginForm() {
         onSuccess: (data: TUserLoginResponse) => {
             reset()
             localStorage.setItem('AUTH_TOKEN', data.access_token);
-            router.replace('/home');
+            router.replace('/home?page=1');
 
         }
     })
@@ -63,7 +63,7 @@ export default function LoginForm() {
             <div className="flex flex-col my-2">
                 <div className="flex flex-col">
                     <label className="font-bold" htmlFor="correo"> Correo </label>
-                    <input className="w-full h-8 pl-2 focus:outline-none bg-gray-100 border rounded-md" type="email" id="correo" placeholder="correo"
+                    <input className="w-full h-8 pl-2 focus:outline-none bg-white border border-gray-300 rounded-md" type="email" id="correo" placeholder="correo"
                         {...register("correo", {
                             required: "El correo es obligatorio",
                             pattern: {
@@ -79,7 +79,7 @@ export default function LoginForm() {
             <div className="flex flex-col my-2">
                 <div className="flex flex-col">
                     <label className="font-bold" htmlFor="contrasena">Contraseña </label>
-                    <input className="w-full h-8 pl-2 focus:outline-none bg-gray-100 border rounded-md" type='password' id="contrasena" placeholder="Contraseña"
+                    <input className="w-full h-8 pl-2 focus:outline-none bg-white border border-gray-300 rounded-md" type='password' id="contrasena" placeholder="Contraseña"
                         {...register("contrasena", {
                             required: "La contraseña es obligatoria",
                             minLength: {

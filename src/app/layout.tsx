@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     template: "%s - OL | Software",
-    default: "Login - OlSoftware"
+    default: "OlSoftware"
   },
   description: "Tienda virtual de productos",
 };

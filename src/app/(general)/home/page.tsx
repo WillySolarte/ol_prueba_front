@@ -1,35 +1,22 @@
-"use client"
+import Title from "@/components/auxiliar/Title";
+import TableBusinessman from "@/components/table/TableBusinessman";
 
-import { useAuth } from "@/components/auth/useAuth";
-import Header from "@/components/header/Header";
-import { useRouter } from "next/navigation";
 
 export default function HomePage() {
 
 
-    const router = useRouter();
-    const { data, isError, isLoading } = useAuth()
 
-    if (isLoading) {
-        return 'Cargando ...'
-    }
-    if (isError) {
-        router.replace('/login');
-    }
 
-    if (data) {
-        const { nombre, rol } = data.data
-        return (
-            <div className='w-full h-screen flex flex-col bg-blue-100' >
-                <Header />
-                <div className="bg-white flex flex-col max-w-[300px] my-5 ml-3 p-5 rounded-lg">
-                    <p className="font-bold">Usuario: {nombre} </p>
-                    <p className="font-bold">Rol: {rol} </p>
-                </div>
-                <div className='w-full h-[400px]'>
-                    page
-                </div>
+
+
+    return (
+        <div className='w-full h-screen flex flex-col bg-white' >
+
+            <Title text='Lista Formularios Creados' />
+            <div className='w-full flex flex-col items-center'>
+                <TableBusinessman/>
             </div>
-        )
-    }
+        </div>
+    )
+
 }
