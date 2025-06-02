@@ -151,3 +151,24 @@ export async function createBusinessmanData(dataForm: TCreateBusinessman){
         }
     }
 }
+
+export async function getCSV() {
+  try {
+    const url = `/report/export`;
+    const response = await api.get(url, {
+      responseType: 'blob', 
+    });
+
+    const blob = new Blob([response.data], { type: 'text/csv' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'comerciantes.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw error.response.data.message;
+    }
+  }
+}

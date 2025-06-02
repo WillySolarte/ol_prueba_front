@@ -5,6 +5,7 @@ import EditForm from "@/components/edit/EditForm";
 import { TBusinessmanEditGetData } from "@/schemas";
 import { getBusinessmanById } from "@/services/businessmanService";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import z from "zod";
 
@@ -49,6 +50,7 @@ export default function EditPage() {
             <div className='w-full h-screen flex flex-col bg-blue-100' >
 
                 <Title text={`${dataType.nombre}`} />
+                <Link href={'/home'} className="bg-green-700 w-32 text-white rounded-md flex justify-center items-center h-10 mx-7" >Regresar</Link>
                 <div className='w-full flex flex-col items-center'>
                     <EditForm {...dataType} />
                 </div>

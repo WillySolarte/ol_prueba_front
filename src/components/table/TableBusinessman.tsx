@@ -1,24 +1,28 @@
 "use client"
 
-import { getBusinessman } from "@/services/businessmanService"
+import { getBusinessman, getCSV } from "@/services/businessmanService"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { ChangeEvent, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { TPaginationData } from "@/schemas"
 import Row from "../auxiliar/Row"
 import Link from "next/link"
+import { useAuth } from "../auth/useAuth"
 
 export default function TableBusinessman() {
 
 
 
   const searchParams = useSearchParams()
-  
+
   const queryClient = useQueryClient()
 
 
   const [take, setTake] = useState(5);
   const page = Number(searchParams.get('page')) || 1;
+
+  const { data: userActive } = useAuth()
+
 
   const { data, isLoading } = useQuery({
     queryKey: ['businessmans', take, page],
@@ -29,6 +33,9 @@ export default function TableBusinessman() {
     setTake(Number(evt.target.value))
     queryClient.invalidateQueries({ queryKey: ['businessmans'] })
 
+  }
+  function generateCSVData() {
+    getCSV()
   }
 
   if (isLoading) {
@@ -45,8 +52,14 @@ export default function TableBusinessman() {
 
     return (
       <div>
-        
-        <Link  className="bg-rose-600 flex justify-center items-center w-[200px] text-white h-10 my-3 rounded-lg cursor-pointer font-bold" href={'/home/create'}>Crear Formulario Nuevo</Link>
+
+        <div className="flex gap-x-5">
+          <Link className="bg-rose-600 flex justify-center items-center w-[200px] text-white h-10 my-3 rounded-lg cursor-pointer font-bold border-2" href={'/home/create'}>Crear Formulario Nuevo</Link>
+          {userActive.data.rol === 'ADMIN' && (
+            <button onClick={generateCSVData} type="button" className="bg-white flex justify-center items-center w-[200px] h-10 my-3 rounded-lg cursor-pointer font-bold border-2 border-rose-600 text-rose-600">Descargar Reporte CSV</button>
+
+          )}
+        </div>
         <table className=" border rounded-xl">
           <thead className="bg-blue-400 h-10">
             <tr className="text-white">
