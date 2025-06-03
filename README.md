@@ -11,6 +11,15 @@ Pasos para levantar la app en desarrollo
 5. Ejecutar el comando ```npm run dev -- -p 3001``` para ejecutar aplicación en desarrollo
 El proyecto se ejecuta en el puerto 3001 ya que el back de nest.js trabaja en el 3000
 
-# NOTA
+# NOTAS
 
 - Teniendo en cuenta que no se solicitó realizar la dockerización del proyecto, no se hizo.
+
+- Para el login se crearon dos usuarios: ADMIN y AUX y sus credenciales son
+
+  ADMINISTRADOR
+  correo: maitecalatayud@bonet.com  contraseña: Admin12345
+
+  AUXILIAR
+  correo: pintocleto@nunez-lamas.com contraseña: Aux12345
+
